@@ -1,7 +1,9 @@
 footer {
   padding: 2rem;
-  background-color: var(--overlay-background-color);
-  font-size: var(--body-font-size-s);
+  background-color: var(--footer-background-color);
+  font-size: var(--body-font-size-xs);
+  color: var(--text-white);
+  font-weight: 400;
 }
 
 footer .footer {
@@ -9,6 +11,23 @@ footer .footer {
   margin: auto;
 }
 
+footer .footer ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 4px 32px;
+  list-style: none;
+  padding-left: 0;
+  max-width: 750px;
+  margin: 0 auto;
+}
+
+footer .footer ul > li > a {
+  color: inherit;
+}
+
 footer .footer p {
-  margin: 0;
+  text-align: center;
+  margin-bottom: 0;
+  font-size: var(--body-font-size-xxs);
 }
