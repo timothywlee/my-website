@@ -1,34 +1,88 @@
 export default function decorate(block) {
-  // Check if the outermost parent of "block" has the class "dots" and "nav-menu"
   const hasDotsClass = block.classList.contains('dots');
-  const hasNavMenuClass = block.classList.contains('nav-menu');
+  const hasNavMenuClass = block.classList.contains('navmenu');
   const hasAutoPlayClass = block.classList.contains('autoplay');
-  let buttons;
-  let tabContainer; // For storing the tab container element
 
-  if (hasDotsClass || (!hasDotsClass && !hasNavMenuClass)) {
-    // Add buttons only if "hasDotsClass" is true
+  const leftArrowEntity = '\u2190'; 
+  const rightArrowEntity = '\u2192'; 
+
+  let buttons;
+  let tabContainer;
+  let arrowLeft;
+  let arrowRight;
+  let autoplayInterval;
+  let tabs = [];
+  let selectedTabIndex = 0;
+
+  function createDots() {
     buttons = document.createElement('div');
     buttons.className = 'carousel-buttons';
   }
 
-  if (hasNavMenuClass) {
-    // Add tab container only if "hasNavMenuClass" is true
+  function createNavMenu() {
     tabContainer = document.createElement('div');
     tabContainer.className = 'carousel-tabs';
+    arrowLeft = document.createElement('button');
+    arrowLeft.className = 'carousel-arrow-left';
+    arrowLeft.textContent = leftArrowEntity;
+    arrowRight = document.createElement('button');
+    arrowRight.className = 'carousel-arrow-right';
+    arrowRight.textContent = rightArrowEntity;
+    tabContainer.append(arrowLeft);
   }
 
-  // Loop through each child row of the "block"
-  [...block.children].forEach((row, i) => {
-    const classes = ['image', 'text'];
-
-    // Add the carousel classes to each child element of the row
-    classes.forEach((e, j) => {
-      row.children[j].classList.add(`carousel-${e}`);
+  function initNavMenuEventListeners() {
+    arrowLeft.addEventListener('click', () => {
+      selectedTabIndex = (selectedTabIndex - 1 + tabs.length) % tabs.length;
+      tabs[selectedTabIndex].click();
     });
 
+    arrowRight.addEventListener('click', () => {
+      selectedTabIndex = (selectedTabIndex + 1) % tabs.length;
+      tabs[selectedTabIndex].click();
+    });
+  }
+
+  function startAutoplay() {
+    autoplayInterval = setInterval(() => {
+      selectedTabIndex = (selectedTabIndex + 1) % tabs.length;
+      tabs[selectedTabIndex].click();
+    }, 5000); // Change slide every 5 seconds
+  }
+
+  function stopAutoplay() {
+    clearInterval(autoplayInterval);
+  }
+
+  if (hasDotsClass || (!hasDotsClass && !hasNavMenuClass)) {
+    createDots();
+  }
+
+  if (hasNavMenuClass && !hasDotsClass) {
+    createNavMenu();
+  }
+
+  /* Loop through each child row of the "block" */
+  [...block.children].forEach((row, i) => {
+    const classes = ['image', 'text'];
+    let tabTitle = '';
+
+    /* Add the carousel classes to each child element of the row */
+    classes.forEach((e, j) => {
+      row.children[j].classList.add(`carousel-${e}`);
+      
+      if (row.children[j].classList.contains("carousel-image")) {
+        const secondChild = row.children[j].children[1];
+        if (secondChild) {
+          tabTitle = secondChild.textContent;
+          secondChild.classList.add("tab-title");
+          secondChild.style.display = "none";
+        }
+      }
+    });
+
+    /* Create dots navigation */
     if (hasDotsClass || (hasDotsClass && hasNavMenuClass) || (!hasDotsClass && !hasNavMenuClass)) {      
-      /* buttons */
       const button = document.createElement('button');
       button.title = 'Carousel Nav';
       if (!i) button.classList.add('selected');
@@ -39,21 +93,50 @@ export default function decorate(block) {
       });
 
       buttons.append(button);
-
       block.parentElement.append(buttons);
     }
 
+    /* Create nav menu */
     if (hasNavMenuClass && !hasDotsClass) {
-      /* tabs */
       const tab = document.createElement('div');
-      tab.textContent = `Tab ${i + 1}`;
+      tab.classList.add('navmenu-tab');
+      tab.textContent = `${tabTitle}`;
+
+      if (!i) tab.classList.add('active');
+
       tab.addEventListener('click', () => {
+        selectedTabIndex = i;
         block.scrollTo({ top: 0, left: row.offsetLeft - row.parentNode.offsetLeft, behavior: 'smooth' });
+
+        tabs.forEach((t) => t.classList.remove('active'));
+        tab.classList.add('active');
       });
 
+      tabs.push(tab);
       tabContainer.append(tab);
-      block.parentElement.classList.add('show-nav')
-      block.parentElement.append(tabContainer);
+      block.parentElement.classList.add('show-nav');
     }
   });
+
+  if (hasNavMenuClass && !hasDotsClass) {
+    initNavMenuEventListeners();
+    block.parentElement.append(tabContainer);
+    tabContainer.append(arrowRight);
+  }
+
+  if (hasAutoPlayClass) {
+    startAutoplay();
+
+    /* Pause autoplay when hovering over the carousel */
+    block.addEventListener('mouseover', stopAutoplay);
+
+    /* Resume autoplay when mouse leaves the carousel */
+    block.addEventListener('mouseout', startAutoplay);
+  }
 }
+
+/*
+  Remaining tasks for completion;
+    1. If more than 3 slides, add a horizontal scrollbar
+    2. Images in mobile need to be different (not responsive since banner image is too large)
+*/

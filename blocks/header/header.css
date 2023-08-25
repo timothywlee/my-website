@@ -193,7 +193,7 @@ header nav .nav-sections ul > li:hover > a {
 }
 
 header nav .nav-sections ul > li:hover > a::after {
-  background-color: var(--header-links-hover-color);
+  background-color: var(--bg-color-blue);
 }
 
 header nav .nav-sections ul > li > a::after {
