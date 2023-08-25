@@ -1,6 +1,6 @@
 footer {
   padding: 2rem;
-  background-color: var(--footer-background-color);
+  background-color: var(--background-color-lightblack);
   font-size: var(--body-font-size-xs);
   color: var(--text-white);
   font-weight: 400;

@@ -38,7 +38,7 @@ main .carousel > div {
   align-items: center;
 }
 
-main .carousel div.carousel-text {
+main .carousel .carousel-text {
   margin-left: 8.33333%;
   background: transparent;
   color: var(--text-white);
@@ -47,26 +47,30 @@ main .carousel div.carousel-text {
   padding: 0 28px;
 }
 
-main .carousel div.carousel-text p:not(.button-container) {
+main .carousel .carousel-text p:not(.button-container) {
   margin: 1.25rem 0;
   line-height: 1.2;
   font-size: var(--body-font-size-xs);
 }
 
-main .carousel div.carousel-text p.button-container {
+main .carousel .carousel-text p.button-container {
   margin-bottom: 0;
 }
 
-main .carousel div.carousel-text h2 {
+main .carousel .carousel-text h2 {
   margin: 0;
   margin-top: 16px; 
 }
 
-main .carousel div.carousel-text .button {
+main .carousel .carousel-text .button {
   margin: 0;
-  background-color: var(--background-color);
+  background-color: var(--background-color-white);
   color: var(--text-color);
   border: none;
+}
+
+main .carousel .carousel-text .button:hover {
+  outline: auto;
 }
 
 main .carousel::-webkit-scrollbar {
@@ -75,6 +79,7 @@ main .carousel::-webkit-scrollbar {
 
 main .carousel-wrapper {
   max-width: unset;
+  position: relative;
 }
 
 main .carousel-wrapper.show-nav {
@@ -88,6 +93,7 @@ main .carousel-wrapper .carousel-buttons {
   display: flex;
   right: 0;
   left: 0;
+  bottom: 7px;
   justify-content: center;
 }
 
@@ -119,7 +125,7 @@ main .carousel-tabs {
   left: 50%;
   bottom: 0;
   transform: translateX(-50%);
-  height: fit-content;
+  height: 50px;
   width: fit-content;
   padding: 0;
   margin-top: 10px;
@@ -144,10 +150,10 @@ main .carousel-tabs .navmenu-tab {
   text-transform: uppercase;
   transition: color .2s ease-in-out;
   white-space: nowrap;
-  width: 150px;
+  width: fit-content;
   text-align: center;
   background: transparent;
-  font-size: var(--body-font-size-xs);
+  font-size: var(--body-font-size-xxs);
 }
 
 main .carousel-tabs .navmenu-tab.active,

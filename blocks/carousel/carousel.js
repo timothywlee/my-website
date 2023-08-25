@@ -87,13 +87,18 @@ export default function decorate(block) {
       button.title = 'Carousel Nav';
       if (!i) button.classList.add('selected');
       button.addEventListener('click', () => {
+        selectedTabIndex = i;
         block.scrollTo({ top: 0, left: row.offsetLeft - row.parentNode.offsetLeft, behavior: 'smooth' });
         [...buttons.children].forEach((r) => r.classList.remove('selected'));
         button.classList.add('selected');
+
+        tabs[selectedTabIndex].click(); // Trigger tab click when dot is clicked
       });
 
       buttons.append(button);
       block.parentElement.append(buttons);
+      tabs.push(button); // Add button to tabs array
+
     }
 
     /* Create nav menu */

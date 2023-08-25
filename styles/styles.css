@@ -14,21 +14,25 @@
   /* colors */
   --link-color: #035fe6;
   --link-hover-color: #136ff6;
-  --background-color: #fff;
-  --footer-background-color: #111;
+  --background-color-white: #fff;
+  --background-color-black: #000;
+  --background-color-lightblack: #111;
   --overlay-background-color: #eee;
-  --highlight-background-color: #ccc;
+  --highlight-background-color: #dad2d24f;
   --bg-color-blue: #0097d6;
   --text-color: #000;
   --text-white: #fff;
   --text-gray: #aaa5a5;
+  --border-color-gray: #e3e3e3;
+  --box-shadow: #00000026;
 
   /* fonts */
-  --body-font-family: roboto, roboto-fallback;
+  --body-font-family: SohneBreit,Helvetica,Arial,sans-serif;;
   --heading-font-family: var(--body-font-family);
   --fixed-font-family: 'Roboto Mono', menlo, consolas, 'Liberation Mono', monospace;
 
   /* body sizes */
+  --body-font-size-lg: 36px;
   --body-font-size-m: 22px;
   --body-font-size-s: 18px;
   --body-font-size-xs: 16px;
@@ -44,7 +48,6 @@
 
   /* nav height */
   --nav-height: 55px;
-
 }
 
 @font-face {
@@ -72,7 +75,7 @@ body {
   font-family: var(--body-font-family);
   line-height: 1.6;
   color: var(--text-color);
-  background-color: var(--background-color);
+  background-color: var(--background-color-white);
   display: none;
 }
 
@@ -160,11 +163,14 @@ a.button:any-link, button {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
+  text-transform: uppercase;
 }
 
 a.button:hover, a.button:focus, button:hover, button:focus  {
   background-color: var(--link-hover-color);
   cursor: pointer;
+  font-weight: 600;
+  text-decoration: none;
 }
 
 button:disabled, button:disabled:hover {
@@ -179,9 +185,13 @@ a.button.primary, buttom.primary {
 }
 
 a.button.secondary, button.secondary {
-  background-color: unset;
+  background-color: var(--background-color-black);
   border: 2px solid currentcolor;
-  color: var(--text-color)
+  color: var(--text-white)
+}
+
+a.button.secondary:hover, button.secondary:hover {
+  
 }
 
 main input {
@@ -195,7 +205,7 @@ main input {
   box-sizing: border-box;
   border: 1px solid var(--text-color);
   color: var(--text-color);
-  background-color: var(--background-color);
+  background-color: var(--background-color-white);
 }
 
 main input:hover {
@@ -248,7 +258,7 @@ main .section {
 
 @media (min-width: 900px) {
   .section > div {
-    max-width: 1200px;
+    max-width: 1440px;
     margin: auto;
   }
 }
@@ -256,4 +266,8 @@ main .section {
 /* section metadata */
 main .section.highlight {
   background-color: var(--highlight-background-color);
+}
+
+main .section.center {
+  text-align: center;
 }
