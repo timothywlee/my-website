@@ -1,7 +1,7 @@
 export default function decorate(block) {
   const hasDotsClass = block.classList.contains('dots');
-  const hasNavMenuClass = block.classList.contains('navmenu');
-  const hasAutoPlayClass = block.classList.contains('autoplay');
+  const hasNavMenuClass = block.classList.contains('navigation-menu');
+  const hasAutoPlayClass = block.classList.contains('auto-play');
 
   const leftArrowEntity = '\u2190'; 
   const rightArrowEntity = '\u2192'; 
