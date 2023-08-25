@@ -250,9 +250,9 @@ main .section {
   padding: 64px 16px;
 }
 
-@media (min-width: 600px) {
+@media (max-width: 768px) {
   main .section {
-    padding: 64px 32px;
+    padding: 1.5rem 1rem;
   }
 }
 

@@ -44,10 +44,6 @@
 }
 
 @media (min-width: 768px) {
-  section.link-cards-container {
-    padding: 1.5rem 1rem;
-  }
-
   .link-cards.block {
     grid-template-columns: repeat(2,minmax(0,1fr));
     gap: var( --body-font-size-s);

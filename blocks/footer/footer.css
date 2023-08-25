@@ -20,6 +20,7 @@ footer .footer ul {
   padding-left: 0;
   max-width: 750px;
   margin: 0 auto;
+  text-align: center;
 }
 
 footer .footer ul > li > a {
@@ -30,4 +31,10 @@ footer .footer p {
   text-align: center;
   margin-bottom: 0;
   font-size: var(--body-font-size-xxs);
+}
+
+@media (max-width: 768px) {
+  footer .footer ul > li > a {
+    font-size: var(--body-font-size-xs);
+  }
 }
