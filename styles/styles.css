@@ -271,3 +271,7 @@ main .section.highlight {
 main .section.center {
   text-align: center;
 }
+
+main .section.remove-padding {
+  padding: 1rem;
+}

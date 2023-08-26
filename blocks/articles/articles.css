@@ -1,0 +1,25 @@
+.section.articles-container > div {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.articles-container  ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.articles-container .article-item > div {
+  padding: 1rem 0;
+  line-height: normal;
+  border-bottom: 1px solid var(--border-color-gray);
+  max-width: 500px;
+}
+
+.articles-container .article-item a {
+  font-size: var(--body-font-size-xs);
+  color: var(--text-color);
+}
+
+.articles-container .article-item a:hover {
+  color: var(--bg-color-blue);
+}
