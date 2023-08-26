@@ -1,5 +1,5 @@
 # Your Project's Title...
-Your project's description...
+GoPro replicated website using custom AEM Franklin block components for demo purposes.
 
 ## Environments
 - Preview: https://main--my-website--timothywlee.hlx.page/
