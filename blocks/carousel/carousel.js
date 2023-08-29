@@ -1,6 +1,6 @@
 export default function decorate(block) {
   const hasDotsClass = block.classList.contains('dots');
-  const hasNavMenuClass = block.classList.contains('navigation-menu');
+  const hasNavMenuClass = block.classList.contains('nav-menu');
   const hasAutoPlayClass = block.classList.contains('auto-play');
 
   const leftArrowEntity = '\u2190'; 
@@ -62,7 +62,7 @@ export default function decorate(block) {
     createNavMenu();
   }
 
-  /* Loop through each child row of the "block" */
+  /* Loop through each child row of the 'block' */
   [...block.children].forEach((row, i) => {
     const classes = ['image', 'text'];
     let tabTitle = '';
@@ -71,12 +71,12 @@ export default function decorate(block) {
     classes.forEach((e, j) => {
       row.children[j].classList.add(`carousel-${e}`);
       
-      if (row.children[j].classList.contains("carousel-image")) {
+      if (row.children[j].classList.contains('carousel-image')) {
         const secondChild = row.children[j].children[1];
         if (secondChild) {
           tabTitle = secondChild.textContent;
-          secondChild.classList.add("tab-title");
-          secondChild.style.display = "none";
+          secondChild.classList.add('tab-title');
+          secondChild.style.display = 'none';
         }
       }
     });
@@ -92,13 +92,12 @@ export default function decorate(block) {
         [...buttons.children].forEach((r) => r.classList.remove('selected'));
         button.classList.add('selected');
 
-        tabs[selectedTabIndex].click(); // Trigger tab click when dot is clicked
+        tabs[selectedTabIndex].click();
       });
 
       buttons.append(button);
       block.parentElement.append(buttons);
-      tabs.push(button); // Add button to tabs array
-
+      tabs.push(button);
     }
 
     /* Create nav menu */
@@ -132,16 +131,8 @@ export default function decorate(block) {
   if (hasAutoPlayClass) {
     startAutoplay();
 
-    /* Pause autoplay when hovering over the carousel */
+    /* Pause autoplay when hovering over/around the carousel */
     block.addEventListener('mouseover', stopAutoplay);
-
-    /* Resume autoplay when mouse leaves the carousel */
     block.addEventListener('mouseout', startAutoplay);
   }
 }
-
-/*
-  Remaining tasks for completion;
-    1. If more than 3 slides, add a horizontal scrollbar
-    2. Images in mobile need to be different (not responsive since banner image is too large)
-*/

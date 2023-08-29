@@ -1,16 +1,15 @@
 export default function decorate(block) {
-  // go through all teasers
   [...block.children].forEach((row) => [...row.children].forEach((elem) => {
     // add teaser class for each entry
     elem.classList.add('teaser');
     if (elem.querySelector('.cta-list')) {
       elem.classList.add('with-cta-list');
     }
-    // give p containing the image a specific class of "image"
+    // give p containing the image a specific class of 'image'
     const picture = elem.querySelector('picture');
     if (picture && picture.closest('p')) picture.closest('p').classList.add('image');
 
-    // give all the remainig p a specific class of "text"
+    // give all the remaining p a specific class of 'text'
     elem.querySelector('p:not(.image, .button-container)')?.classList.add('text');
 
     // give cta's link(s) a specific class name
